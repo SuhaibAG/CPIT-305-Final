@@ -9,7 +9,7 @@ public class User {
 
     }
 
-    public void makeRequest(String user, int amount, boolean give){
+    public static void makeRequest(String user, int amount, boolean give){
         //sql code to make a request if the boolean give is false then the user is requesting money
 
         //sql code to make a request if the boolean give is true then the user is giving money
@@ -35,7 +35,7 @@ public class User {
         //code using sql to retrieve all users who owe the user money
     }
 
-    public String owingList(){
+    public void owingList(){
         //code using sql retrieve all users who the user owes money to
     }
 
