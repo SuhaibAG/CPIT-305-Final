@@ -59,9 +59,7 @@ class myThread extends Thread {
                 }
 
 
-                out.println("Enter your name!");
-                String name = in.next();
-                out.println("Client says: " + name);
+
 
 
             }
