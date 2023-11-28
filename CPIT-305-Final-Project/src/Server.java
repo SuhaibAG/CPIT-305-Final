@@ -46,6 +46,7 @@ class myThread extends Thread {
 
 
             while (in.hasNextLine()) {
+
                 //logging in
                 String message = in.next();
                 if(message.charAt(0) == '0' ) {
@@ -58,32 +59,18 @@ class myThread extends Thread {
                 }
 
 
+                out.println("Enter your name!");
+                String name = in.next();
+                out.println("Client says: " + name);
+
+
             }
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
     }
 
-    public int commands(PrintWriter out, Scanner in){
-        //prints out commands and takes in the input of user
-        out.println("Choose a feature that you want to use /n" +
-                "type 1 to make a request /n" +
-                "type 2 to make remove a reques /n" +
-                "type 3 to view requests /n" +
-                "type 4 to accept requests /n" +
-                "type 5 to give money /n" +
-                "type 6 to show owed list /n" +
-                "type 7 to showing list /n" +
-                "type 8 to log out");
 
-        int answer = in.nextInt();
-
-        if (answer > 8 || answer < 1){
-            out.println("Please choose something from the list");
-            return commands(out, in);
-        }
-        return answer;
-    }
 
     public void responder(PrintWriter out, Scanner in, int response, User user){
         switch(response){
