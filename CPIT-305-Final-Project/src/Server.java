@@ -43,43 +43,18 @@ class myThread extends Thread {
             OutputStream fis = new FileOutputStream(".\\users.txt");
             ObjectOutputStream output = new ObjectOutputStream(fis);
 
-            out.printf("welcome to debt organiser, Enter your username");
+
 
             while (in.hasNextLine()) {
-                //getting the user to login
-                boolean login = false;
-                int id = 0;
-              /*  while (!login) {
-                    out.println("Enter your name!");
-                    String name = in.next();
-                     if (username in db ){
-                          login = true
-                          id = username's id from the db
-                          }
-                    System.out.println("Client says: " + name);
-                }*/
-
-                //this is temporary code for now
-
-                String username = in.next();
-                //
-
-
-                User user = new User(id, username);
-                out.println("logged in as " +  username);
-                boolean loggedin = true;
-                while(loggedin) {
-                    int response = commands(out, in); // getting the response of the user
-
-                    if (response == 8){
-                        loggedin = false;
+                //logging in
+                String message = in.next();
+                if(message.charAt(0) == '0' ) {
+                    if(message.endsWith("suhaib")) {
+                        out.println("logged in");
                     }
                     else{
-                        responder(out, in, response, user);
+                        out.println("try again");
                     }
-
-
-
                 }
 
 

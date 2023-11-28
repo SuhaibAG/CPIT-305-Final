@@ -16,15 +16,22 @@ public class Client {
 
             Scanner userInput = new Scanner(System.in);
 
-
+            boolean login = false;
             while (true) {
                 String message = "";
+                if (!login) {
+                    System.out.println("enter your username");
+                    message = "0" + userInput.next();
+                    out.println(message);
+                    String response = in.nextLine();
 
-                message = in.nextLine();
-                System.out.printf("Server says: " + message + "\n");
+                    System.out.println(response);
+                    if(response.equals("logged in")){
+                        login = true;
+                    }
+                }
 
-                String send = userInput.next();
-                out.println(send);
+
 
 
 
