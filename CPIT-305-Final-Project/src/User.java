@@ -9,10 +9,9 @@ public class User {
 
     }
 
-    public static void makeRequest(String user, int amount, boolean give){
-        //sql code to make a request if the boolean give is false then the user is requesting money
+    public  void makeRequest(String user, int amount){
+        //sql code to make a request if the boolean give
 
-        //sql code to make a request if the boolean give is true then the user is giving money
     }
 
     public void removeRequest(String username){
@@ -20,14 +19,17 @@ public class User {
     }
 
     public void viewRequests(){
-        //sql code to view all requests and print them in method
+        //sql code to get all the requests
+
+        //code to print out all the requests
+
     }
 
     public void acceptRequests(String username){
         //sql code to accept the request
     }
 
-    public void giveMoney(int amount){
+    public void giveMoney(String username){
         //code using sql to give money
     }
 

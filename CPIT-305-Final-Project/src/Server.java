@@ -46,9 +46,9 @@ class myThread extends Thread {
 
 
             while (in.hasNextLine()) {
-
                 //logging in
                 String message = in.next();
+
                 if(message.charAt(0) == '0' ) {
                     if(message.endsWith("suhaib")) {
                         out.println("logged in");
@@ -58,7 +58,42 @@ class myThread extends Thread {
                     }
                 }
 
+                //logging out
+                else if(message.charAt(0) == '8'){
+                    out.println("logged out");
+                }
 
+                //making a request
+                else if(message.charAt(0) == '1'){
+                    out.println();
+                }
+
+                //removing a request
+                else if(message.charAt(0) == '2'){
+                    out.println();
+                }
+
+                //view all requests
+                else if(message.charAt(0) == '3'){
+                    out.println();
+                }
+
+                //accept requests
+                else if(message.charAt(0) == '4'){
+                    out.println();
+                }
+
+                else if(message.charAt(0) == '5'){
+                    out.println();
+                }
+
+                else if(message.charAt(0) == '6'){
+                    out.println();
+                }
+
+                else if(message.charAt(0) == '7'){
+                    out.println();
+                }
 
 
 
@@ -68,25 +103,7 @@ class myThread extends Thread {
         }
     }
 
-
-
-    public void responder(PrintWriter out, Scanner in, int response, User user){
-        switch(response){
-            case 1:
-                out.println("Enter the name of the ussader you want to request from");
-                String otherUser = in.next();
-                out.println("enter the amount of money you want to request");
-                int amount = in.nextInt();
-                out.println("if you want to request money type 0, if the you want to give money type 1");
-                boolean type = in.nextBoolean();
-                User.makeRequest(otherUser, amount, type);
-
-            case 2:
-
-        }
-
-
-    }
-
 }
+
+
 
