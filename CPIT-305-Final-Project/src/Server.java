@@ -1,11 +1,17 @@
 import java.io.*;
 import java.net.Socket;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.Scanner;
 import java.net.ServerSocket;
 
 public class Server {
 
     public static void main(String[] args) throws Exception {
+        String url = "project305database.database.windows.net";
+        String user = "Saud";
+        String pass = "Duzu26\\5";
+        Connection con = DriverManager.getConnection(url, user, pass);
         ServerSocket server = new ServerSocket(8800);
 
         System.out.println("Server waiting Connection...");
