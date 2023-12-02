@@ -8,12 +8,14 @@ import java.util.Scanner;
 public class Client {
 
     public static void main(String[] args) throws UnknownHostException, IOException {
+
         try {
-            Socket client = new Socket("127.0.0.1", 8800);
+            Socket client = new Socket("127.0.0.2", 8800);
 
             Scanner in = new Scanner(client.getInputStream());
             PrintWriter out = new PrintWriter(client.getOutputStream(), true);
             Scanner userInput = new Scanner(System.in);
+            ObjectInputStream objectIn = new ObjectInputStream(client.getInputStream());
 
 
             boolean login = false;
@@ -54,7 +56,7 @@ public class Client {
                     else if (command == 1) {
                         System.out.println("enter the name of the other user");
                         String otherUser = userInput.next();
-                        System.out.println("enter the amount you want to give");
+                        System.out.println("enter the amount you want to request");
                         int amount = userInput.nextInt();
                         user.makeRequest(otherUser, amount);
                     }
@@ -79,15 +81,17 @@ public class Client {
                     }
 
                     else if (command == 5) {
-
+                        System.out.println("enter the name of the user you want to give to");
+                        String otherUser = userInput.next();
+                        user.giveMoney(otherUser);
                     }
 
                     else if (command == 6) {
-
+                        user.owedList();
                     }
 
                     else if (command == 7) {
-
+                        user.owingList();
                     }
                     else{
                         System.out.println("wrong command");
@@ -114,6 +118,8 @@ public class Client {
             System.err.println("There are no connection at this port");
         } catch (IOException e) {
             System.err.println(e.getMessage());
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -128,7 +134,7 @@ public class Client {
         System.out.println("type 4 to accept requests");
         System.out.println("type 5 to give money");
         System.out.println("type 6 to show owed list");
-        System.out.println("type 7 to showing list");
+        System.out.println("type 7 to show owing list");
         System.out.println("type 8 to log out");
     }
 }

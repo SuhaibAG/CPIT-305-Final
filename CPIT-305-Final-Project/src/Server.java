@@ -38,10 +38,11 @@ class myThread extends Thread {
         try {
             Scanner in = new Scanner(client.getInputStream());
             PrintWriter out = new PrintWriter(client.getOutputStream(), true);
+            ObjectOutputStream objectOut = new ObjectOutputStream(client.getOutputStream());
 
 
-            OutputStream fis = new FileOutputStream(".\\users.txt");
-            ObjectOutputStream output = new ObjectOutputStream(fis);
+            PrintWriter logs = new PrintWriter(".\\logs.txt");
+
 
 
 
@@ -52,6 +53,7 @@ class myThread extends Thread {
                 if(message.charAt(0) == '0' ) {
                     if(message.endsWith("suhaib")) {
                         out.println("logged in");
+                        logs.println("logged in as " + message);
                     }
                     else{
                         out.println("try again");
@@ -61,11 +63,12 @@ class myThread extends Thread {
                 //logging out
                 else if(message.charAt(0) == '8'){
                     out.println("logged out");
+                    logs.println("logged out from " + message);
                 }
 
                 //making a request
                 else if(message.charAt(0) == '1'){
-                    out.println();
+
                 }
 
                 //removing a request
@@ -94,6 +97,7 @@ class myThread extends Thread {
                 else if(message.charAt(0) == '7'){
                     out.println();
                 }
+                logs.flush();
 
 
 

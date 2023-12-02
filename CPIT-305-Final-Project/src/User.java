@@ -11,6 +11,7 @@ public class User {
 
     public  void makeRequest(String user, int amount){
         //sql code to make a request if the boolean give
+        String query = "add into x where name1 = " + username + ", name2 = " + user + " , id1 = " + id;
 
     }
 
