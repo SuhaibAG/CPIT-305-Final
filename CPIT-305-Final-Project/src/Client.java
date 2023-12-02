@@ -118,8 +118,6 @@ public class Client {
             System.err.println("There are no connection at this port");
         } catch (IOException e) {
             System.err.println(e.getMessage());
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
         }
     }
 
