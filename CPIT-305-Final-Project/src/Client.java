@@ -1,6 +1,8 @@
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -34,8 +36,11 @@ public class Client {
 
                     System.out.println(response);
                     if (response.equals("logged in")) {
-                        user = new User(0, message.substring(1));
+                        int idLocation = message.length() -1 ;
+                        user = new User(Integer.parseInt(response.substring(idLocation)), message.substring(1));
                         login = true;
+                        System.out.println(user.getId());
+                        System.out.println(user.getUsername());
 
                     }
                 }
@@ -71,7 +76,16 @@ public class Client {
 
                     //view all requests
                     else if (command == 3) {
-                        user.viewRequests();
+                        String sql = user.viewRequests();
+                        out.println(sql);
+                        Object obj = objectIn.readObject();
+                        ResultSet rs = (ResultSet) obj;
+
+                        while(rs.next()){
+                            System.out.println("Id: " + rs.getInt(1) + " Name: " + rs.getString(2));
+                        }
+
+
                     }
 
 
@@ -119,6 +133,10 @@ public class Client {
             System.err.println("There are no connection at this port");
         } catch (IOException e) {
             System.err.println(e.getMessage());
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
