@@ -27,23 +27,31 @@ public class Client {
                 System.out.println("x");
                 String message = "";
 
+
+
+
                 //login condition
                 if (!login) {
                     System.out.println("enter your username");
-                    message = "0" + userInput.next();
+                    String username = userInput.next();
+                    message = "0" + username;
                     out.println(message);
                     String response = in.nextLine();
 
                     System.out.println(response);
-                    if (response.equals("logged in")) {
-                        int idLocation = message.length() -1 ;
-                        user = new User(Integer.parseInt(response.substring(idLocation)), message.substring(1));
+                    if (response.startsWith("logged in")) {
+                        int idLocation = message.length() ;
+                        user = new User(2, username);
                         login = true;
                         System.out.println(user.getId());
                         System.out.println(user.getUsername());
 
                     }
                 }
+
+
+
+
 
                 //interpreting all the commands
                 else {
@@ -58,28 +66,48 @@ public class Client {
                         login = false;
                     }
 
+
+
+
+
                     //making a request
                     else if (command == 1) {
                         System.out.println("enter the name of the other user");
                         String otherUser = userInput.next();
+                        System.out.println("enter the id of the other user");
+                        int id = userInput.nextInt();
                         System.out.println("enter the amount you want to request");
                         int amount = userInput.nextInt();
-                        user.makeRequest(otherUser, amount);
+
+                        String query  = user.makeRequest(otherUser, id, amount);
+                        out.println(query);
+                        System.out.println(in.next());
+
                     }
+
+
+
+
 
                     //removing a request
                     else if (command == 2) {
                         System.out.println("enter the name of the other user");
                         String otherUser = userInput.next();
-                        user.removeRequest(otherUser);
+                        String query = user.removeRequest(otherUser);
+                        out.println(query);
+                        System.out.println(in.next());
                     }
+
+
+
+
 
                     //view all requests
                     else if (command == 3) {
                         String sql = user.viewRequests();
                         out.println(sql);
-                        Object obj = objectIn.readObject();
-                        ResultSet rs = (ResultSet) obj;
+                        ResultSet rs = (ResultSet) objectIn.readObject();
+
 
                         while(rs.next()){
                             System.out.println("Id: " + rs.getInt(1) + " Name: " + rs.getString(2));
@@ -89,28 +117,56 @@ public class Client {
                     }
 
 
+
+
+                    //accept a request
                     else if (command == 4) {
                         System.out.println("enter the name of the user you want to accept requests from");
                         String otherUser = userInput.next();
                         user.acceptRequests(otherUser);
                     }
 
+
+
+
+
+                    //give money
                     else if (command == 5) {
                         System.out.println("enter the name of the user you want to give to");
                         String otherUser = userInput.next();
+                        System.out.println("enter the amount you want to give to");
                         user.giveMoney(otherUser);
                     }
 
+
+
+
+
+                    //show owed list
                     else if (command == 6) {
                         user.owedList();
                     }
 
+
+
+
+                    //show owing list
                     else if (command == 7) {
                         user.owingList();
                     }
+
+
+
+
+
                     else{
                         System.out.println("wrong command");
                     }
+
+
+
+
+
 
 
                 }

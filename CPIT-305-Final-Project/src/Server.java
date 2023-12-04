@@ -42,7 +42,7 @@ class myThread extends Thread {
                 "encrypt=true;" +
                 "trustServerCertificate=false;" +
                 "hostNameInCertificate=*.database.windows.net;" +
-                "loginTimeout=30;";
+                "loginTimeout=15;";
 
         System.out.println("Client connect via: " + client.getInetAddress().getHostAddress());
         try(Connection con = DriverManager.getConnection(url);
@@ -55,7 +55,6 @@ class myThread extends Thread {
 
                 PrintWriter logs = new PrintWriter(".\\logs.txt");
 
-
                 while (in.hasNextLine()) {
                     //logging in
                     String message = in.next();
@@ -66,6 +65,7 @@ class myThread extends Thread {
                         if (id != -1) {
                             out.println("logged in as " + username + id);
                             logs.println("logged in as " + username);
+
                         } else {
                             out.println("try again");
                         }
@@ -79,12 +79,17 @@ class myThread extends Thread {
 
                     //making a request
                     else if (message.charAt(0) == '1') {
-
+                        String query = in.next();
+                        statement.execute(query);
+                        statement.
+                        out.println("request made");
                     }
 
                     //removing a request
                     else if (message.charAt(0) == '2') {
-                        out.println();
+                        statement.execute(in.next());
+                        out.println("request deleted");
+
                     }
 
                     //view all requests
@@ -95,11 +100,14 @@ class myThread extends Thread {
                     //accept requests
                     else if (message.charAt(0) == '4') {
                         out.println();
-                    } else if (message.charAt(0) == '5') {
+                    }
+                    else if (message.charAt(0) == '5') {
                         out.println();
-                    } else if (message.charAt(0) == '6') {
+                    }
+                    else if (message.charAt(0) == '6') {
                         out.println();
-                    } else if (message.charAt(0) == '7') {
+                    }
+                    else if (message.charAt(0) == '7') {
                         out.println();
                     }
                     logs.flush();
@@ -117,8 +125,12 @@ class myThread extends Thread {
     public int login(Statement statement, String username) throws SQLException {
         String sql = "Select * from Usersinfo";
         ResultSet rs = statement.executeQuery(sql);
+
         while(rs.next()){
-            if(rs.getString(2) == username){
+
+            if(rs.getString(2).equals(username)){
+                System.out.println(rs.getInt(1));
+                System.out.println(rs.getString(2));
                 return rs.getInt(1);
             }
         }

@@ -28,9 +28,11 @@ public class User {
         this.username = username;
     }
 
-    public String makeRequest(String user, int amount){
+    public String makeRequest(String user2, int id2,int amount){
         //sql code to make a request if the boolean give
-        String query = "add into x where name1 = " + username + ", name2 = " + user + " AND id1 = " + id "AND id2 = ";
+        String query = "INSERT INTO requests VALUES(" + this.id + "," + id2 + "," + this.username + "," + user2 + "," + amount + false + ")";
+        System.out.println("checkpoint");
+
         return query;
     }
 
@@ -54,7 +56,7 @@ public class User {
 
     public void giveMoney(String username){
         //code using sql to give money
-        String sql =
+        String query = "Delete";
     }
 
     public void owedList(){
