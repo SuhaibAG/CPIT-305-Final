@@ -24,7 +24,7 @@ public class Client {
             boolean login = false;
             User user = null;
             while (true) {
-                System.out.println("x");
+                System.out.println("=============================");
                 String message = "";
 
 
@@ -80,8 +80,9 @@ public class Client {
                         int amount = userInput.nextInt();
 
                         String query  = user.makeRequest(otherUser, id, amount);
-                        out.println(query);
-                        System.out.println(in.next());
+                        System.out.println(query);
+                        out.println("1" + query);
+                        System.out.println("executed");;
 
                     }
 
@@ -91,11 +92,11 @@ public class Client {
 
                     //removing a request
                     else if (command == 2) {
-                        System.out.println("enter the name of the other user");
-                        String otherUser = userInput.next();
-                        String query = user.removeRequest(otherUser);
-                        out.println(query);
-                        System.out.println(in.next());
+                        System.out.println("enter the request number");
+                        int reqNumber = userInput.nextInt();
+                        String query = user.removeRequest(reqNumber);
+                        out.println("2" + query);
+                        System.out.println("deleted");
                     }
 
 
@@ -105,7 +106,7 @@ public class Client {
                     //view all requests
                     else if (command == 3) {
                         String sql = user.viewRequests();
-                        out.println(sql);
+                        out.println("3" + sql);
                         ResultSet rs = (ResultSet) objectIn.readObject();
 
 
@@ -123,7 +124,9 @@ public class Client {
                     else if (command == 4) {
                         System.out.println("enter the name of the user you want to accept requests from");
                         String otherUser = userInput.next();
-                        user.acceptRequests(otherUser);
+                        String query = user.acceptRequests(otherUser);
+                        out.println(4 + query);
+                        System.out.println("Updated");
                     }
 
 
@@ -132,10 +135,10 @@ public class Client {
 
                     //give money
                     else if (command == 5) {
-                        System.out.println("enter the name of the user you want to give to");
-                        String otherUser = userInput.next();
+                        System.out.println("enter the request number you want to delete");
+                        int requestNumber = userInput.nextInt();
                         System.out.println("enter the amount you want to give to");
-                        user.giveMoney(otherUser);
+                        String sql = user.giveMoney(requestNumber);
                     }
 
 

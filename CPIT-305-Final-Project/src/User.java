@@ -1,5 +1,6 @@
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Random;
 
 public class User {
     private int id;
@@ -29,16 +30,19 @@ public class User {
     }
 
     public String makeRequest(String user2, int id2,int amount){
+        Random rand = new Random();
+        int requestNum = (int) (Math.random() * 1000);
         //sql code to make a request if the boolean give
-        String query = "INSERT INTO requests VALUES(" + this.id + "," + id2 + "," + this.username + "," + user2 + "," + amount + false + ")";
-        System.out.println("checkpoint");
+        String query = "insert into Owe " +
+                "(RequestNumber,ID1,ID2,Name1,Name2,Amount,Accepted)" +
+                " values  ("+requestNum+","+this.id+","+id2+",'"+this.username+"','"+user2+"',"+amount+",'"+"false');";
 
         return query;
     }
 
-    public String removeRequest(String username){
+    public String removeRequest(int requestnNumber){
         //sql code to remove all requests by username
-        String query = "DELETE FROM requests where name1 = " + this.username + " AND name2 = " + username;
+        String query = "delete from Owe where RequestNumber=" + requestnNumber + ";";
         return query;
     }
 
@@ -49,22 +53,28 @@ public class User {
         return sql;
     }
 
-    public void acceptRequests(String username){
+    public String acceptRequests(String username){
         //sql code to accept the request
-        String sql = "UPDATE requests SET condition = True WHERE name1 =" + this.username + " AND name2 = " + username;
+        String sql = "update Owe set Accepted = 'true'  where Name1 = '"+this.username+"' And Name2='"+username+"';";
+        return sql;
     }
 
-    public void giveMoney(String username){
+    public String giveMoney(int requestnNumber){
         //code using sql to give money
-        String query = "Delete";
+        String query = "delete from Owe where RequestNumber=" + requestnNumber + ";";
+        return query;
     }
 
-    public void owedList(){
+    public String owedList(){
         //code using sql to retrieve all users who owe the user money
+        String sql = "Select * from Owe where User1= '" + this.username +"';";
+        return sql;
     }
 
-    public void owingList(){
+    public String owingList(){
         //code using sql retrieve all users who the user owes money to
+        String sql = "Select * from Owe where User2= '" + this.username +"';";
+        return sql;
     }
 
 }

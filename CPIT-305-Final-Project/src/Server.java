@@ -57,7 +57,7 @@ class myThread extends Thread {
 
                 while (in.hasNextLine()) {
                     //logging in
-                    String message = in.next();
+                    String message = in.nextLine();
 
                     if (message.charAt(0) == '0') {
                         String username = message.substring(1);
@@ -79,35 +79,45 @@ class myThread extends Thread {
 
                     //making a request
                     else if (message.charAt(0) == '1') {
-                        String query = in.next();
-                        statement.execute(query);
-                        statement.
-                        out.println("request made");
+                        String query = message.substring(1);
+                        System.out.println(query);
+                        Statement insert = con.createStatement();
+                        insert.executeUpdate(query);
+
                     }
 
                     //removing a request
                     else if (message.charAt(0) == '2') {
-                        statement.execute(in.next());
-                        out.println("request deleted");
+                        String query = message.substring(1);
+                        System.out.println(query);
+                        Statement delete = con.createStatement();
+                        delete.executeUpdate(query);
 
                     }
 
                     //view all requests
                     else if (message.charAt(0) == '3') {
+                        String sql = in.next();
                         out.println();
                     }
 
                     //accept requests
                     else if (message.charAt(0) == '4') {
-                        out.println();
+                        String query = message.substring(1);
+                        System.out.println(query);
+                        Statement delete = con.createStatement();
+                        delete.executeUpdate(query);
                     }
                     else if (message.charAt(0) == '5') {
+                        String sql = in.next();
                         out.println();
                     }
                     else if (message.charAt(0) == '6') {
+                        String sql = in.next();
                         out.println();
                     }
                     else if (message.charAt(0) == '7') {
+                        String sql = in.next();
                         out.println();
                     }
                     logs.flush();
@@ -137,6 +147,9 @@ class myThread extends Thread {
 
 
         return -1;
+    }
+    public void insert(Connection con, String query) throws SQLException {
+
     }
 
 }
