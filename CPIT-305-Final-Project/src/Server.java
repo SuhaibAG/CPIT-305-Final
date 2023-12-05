@@ -1,6 +1,7 @@
 import java.io.*;
 import java.net.Socket;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.net.ServerSocket;
 
@@ -97,28 +98,59 @@ class myThread extends Thread {
 
                     //view all requests
                     else if (message.charAt(0) == '3') {
-                        String sql = in.next();
-                        out.println();
+                        String query = message.substring(1);
+                        System.out.println(query);
+                        ResultSet rs = statement.executeQuery(query);
+                        ArrayList<String> results = new ArrayList<String>();
+                        while(rs.next()){
+                            results.add("Request Num: " +  rs.getInt(1) +" | "+ rs.getString(4) + " requests " + rs.getInt(6));
+                        }
+                        System.out.println("checkpoint");
+                        objectOut.writeObject(results);
                     }
 
                     //accept requests
                     else if (message.charAt(0) == '4') {
                         String query = message.substring(1);
                         System.out.println(query);
-                        Statement delete = con.createStatement();
-                        delete.executeUpdate(query);
+                        Statement update = con.createStatement();
+                        update.executeUpdate(query);
                     }
+
+
+                    //give money
                     else if (message.charAt(0) == '5') {
-                        String sql = in.next();
-                        out.println();
+                        String query = message.substring(1);
+                        System.out.println(query);
+                        Statement update = con.createStatement();
+                        update.execute(query);
                     }
+
+                    //owed list
                     else if (message.charAt(0) == '6') {
-                        String sql = in.next();
-                        out.println();
+                        String query = message.substring(1);
+                        System.out.println(query);
+                        ResultSet rs = statement.executeQuery(query);
+                        ArrayList<String> results = new ArrayList<String>();
+                        while(rs.next()){
+                            results.add("Request Num: " +  rs.getInt(1) +" | "+ rs.getString(4) + " owes you " + rs.getInt(6));
+                        }
+                        System.out.println("checkpoint");
+                        objectOut.writeObject(results);
                     }
+
+                    //owing list
                     else if (message.charAt(0) == '7') {
-                        String sql = in.next();
-                        out.println();
+                        String query = message.substring(1);
+                        System.out.println(query);
+                        ResultSet rs = statement.executeQuery(query);
+                        ArrayList<String> results = new ArrayList<String>();
+
+                        while(rs.next()){
+                            results.add("Request Num: " +  rs.getInt(1) +" | you owe "+ rs.getString(5) + " " + rs.getInt(6));
+                        }
+                        System.out.println("checkpoint");
+                        objectOut.writeObject(results);
                     }
                     logs.flush();
 
@@ -147,9 +179,6 @@ class myThread extends Thread {
 
 
         return -1;
-    }
-    public void insert(Connection con, String query) throws SQLException {
-
     }
 
 }

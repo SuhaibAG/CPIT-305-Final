@@ -48,14 +48,14 @@ public class User {
 
     public String viewRequests(){
         //sql code to get all the requests
-        String sql = "SELECT * FROM Usersinfo WHERE id1 = " + this.id;
+        String sql = "select * from Owe where Name2 ='" + this.username + "' AND Accepted = 'false';";
         //code to print out all the requests
         return sql;
     }
 
     public String acceptRequests(String username){
         //sql code to accept the request
-        String sql = "update Owe set Accepted = 'true'  where Name1 = '"+this.username+"' And Name2='"+username+"';";
+        String sql = "update Owe set Accepted = 'true'  where Name2 = '"+this.username+"' And Name1='"+username+"';";
         return sql;
     }
 
@@ -67,13 +67,13 @@ public class User {
 
     public String owedList(){
         //code using sql to retrieve all users who owe the user money
-        String sql = "Select * from Owe where User1= '" + this.username +"';";
+        String sql = "Select * from Owe where Name2= '" + this.username +"' AND Accepted= 'true';";
         return sql;
     }
 
     public String owingList(){
         //code using sql retrieve all users who the user owes money to
-        String sql = "Select * from Owe where User2= '" + this.username +"';";
+        String sql = "Select * from Owe where Name1= '" + this.username +"' AND Accepted = 'true';";
         return sql;
     }
 

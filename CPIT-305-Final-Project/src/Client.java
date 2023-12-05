@@ -3,6 +3,8 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -24,7 +26,7 @@ public class Client {
             boolean login = false;
             User user = null;
             while (true) {
-                System.out.println("=============================");
+                System.out.println("=============================================");
                 String message = "";
 
 
@@ -107,14 +109,11 @@ public class Client {
                     else if (command == 3) {
                         String sql = user.viewRequests();
                         out.println("3" + sql);
-                        ResultSet rs = (ResultSet) objectIn.readObject();
+                        ArrayList<String> results = (ArrayList<String>) objectIn.readObject();
 
-
-                        while(rs.next()){
-                            System.out.println("Id: " + rs.getInt(1) + " Name: " + rs.getString(2));
+                        for (int i = 0; i < results.size(); i++) {
+                            System.out.println(results.get(i));
                         }
-
-
                     }
 
 
@@ -126,7 +125,7 @@ public class Client {
                         String otherUser = userInput.next();
                         String query = user.acceptRequests(otherUser);
                         out.println(4 + query);
-                        System.out.println("Updated");
+                        System.out.println("Accepted the request");
                     }
 
 
@@ -135,10 +134,11 @@ public class Client {
 
                     //give money
                     else if (command == 5) {
-                        System.out.println("enter the request number you want to delete");
+                        System.out.println("enter the request number you want to settle");
                         int requestNumber = userInput.nextInt();
-                        System.out.println("enter the amount you want to give to");
-                        String sql = user.giveMoney(requestNumber);
+                        String query = user.giveMoney(requestNumber);
+                        out.println(4 + query);
+                        System.out.println("Debt payed off");
                     }
 
 
@@ -148,6 +148,14 @@ public class Client {
                     //show owed list
                     else if (command == 6) {
                         user.owedList();
+                        String sql = user.owedList();
+                        out.println("6" + sql);
+                        ArrayList<String> results = (ArrayList<String>) objectIn.readObject();
+
+                        for (int i = 0; i < results.size(); i++) {
+                            System.out.println(results.get(i));
+                        }
+
                     }
 
 
@@ -155,7 +163,14 @@ public class Client {
 
                     //show owing list
                     else if (command == 7) {
-                        user.owingList();
+                        user.owedList();
+                        String sql = user.owingList();
+                        out.println("7" + sql);
+                        ArrayList<String> results = (ArrayList<String>) objectIn.readObject();
+
+                        for (int i = 0; i < results.size(); i++) {
+                            System.out.println(results.get(i));
+                        }
                     }
 
 
@@ -165,13 +180,6 @@ public class Client {
                     else{
                         System.out.println("wrong command");
                     }
-
-
-
-
-
-
-
                 }
 
 
@@ -194,8 +202,6 @@ public class Client {
             System.err.println(e.getMessage());
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -205,12 +211,13 @@ public class Client {
         //prints out commands and takes in the input of user
         System.out.println("Choose a feature that you want to use");
         System.out.println("type 1 to make a request");
-        System.out.println("type 2 to make remove a reques");
+        System.out.println("type 2 to make remove a request");
         System.out.println("type 3 to view requests");
         System.out.println("type 4 to accept requests");
-        System.out.println("type 5 to give money");
+        System.out.println("type 5 to Settle debt");
         System.out.println("type 6 to show owed list");
         System.out.println("type 7 to show owing list");
         System.out.println("type 8 to log out");
     }
+
 }
