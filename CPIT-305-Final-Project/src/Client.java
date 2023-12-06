@@ -15,6 +15,7 @@ public class Client {
     public static void main(String[] args) throws UnknownHostException, IOException {
 
         try {
+            //connecting to the socket server and making all the streams
             Socket client = new Socket("127.0.0.2", 8800);
 
             Scanner in = new Scanner(client.getInputStream());
