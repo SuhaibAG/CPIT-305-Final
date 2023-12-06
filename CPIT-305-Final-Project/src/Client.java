@@ -45,8 +45,7 @@ public class Client {
                         int idLocation = message.length() ;
                         user = new User(2, username);
                         login = true;
-                        System.out.println(user.getId());
-                        System.out.println(user.getUsername());
+
 
                     }
                 }
@@ -64,7 +63,6 @@ public class Client {
                     if (command == 8) {
                         out.println("8");
                         String response = in.nextLine();
-                        System.out.println(response);
                         login = false;
                     }
 
@@ -82,7 +80,6 @@ public class Client {
                         int amount = userInput.nextInt();
 
                         String query  = user.makeRequest(otherUser, id, amount);
-                        System.out.println(query);
                         out.println("1" + query);
                         System.out.println("executed");;
 
@@ -172,8 +169,6 @@ public class Client {
                             System.out.println(results.get(i));
                         }
                     }
-
-
 
 
 

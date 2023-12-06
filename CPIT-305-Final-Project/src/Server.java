@@ -81,75 +81,78 @@ class myThread extends Thread {
                     //making a request
                     else if (message.charAt(0) == '1') {
                         String query = message.substring(1);
-                        System.out.println(query);
+
                         Statement insert = con.createStatement();
                         insert.executeUpdate(query);
+                        logs.println("inserted with the following query: " + query);
 
                     }
 
                     //removing a request
                     else if (message.charAt(0) == '2') {
                         String query = message.substring(1);
-                        System.out.println(query);
                         Statement delete = con.createStatement();
                         delete.executeUpdate(query);
+                        logs.println("deleted with the following query: " + query);
 
                     }
 
                     //view all requests
                     else if (message.charAt(0) == '3') {
                         String query = message.substring(1);
-                        System.out.println(query);
                         ResultSet rs = statement.executeQuery(query);
                         ArrayList<String> results = new ArrayList<String>();
                         while(rs.next()){
                             results.add("Request Num: " +  rs.getInt(1) +" | "+ rs.getString(4) + " requests " + rs.getInt(6));
                         }
-                        System.out.println("checkpoint");
+
+                        logs.println("viewed all requests with the following query: " + query);
                         objectOut.writeObject(results);
                     }
 
                     //accept requests
                     else if (message.charAt(0) == '4') {
                         String query = message.substring(1);
-                        System.out.println(query);
                         Statement update = con.createStatement();
                         update.executeUpdate(query);
+
+                        logs.println("accepted a request with the following query with the following query: " + query);
                     }
 
 
                     //give money
                     else if (message.charAt(0) == '5') {
                         String query = message.substring(1);
-                        System.out.println(query);
+
                         Statement update = con.createStatement();
                         update.execute(query);
+                        logs.println("settled debt wtih the following query: " + query);
                     }
 
                     //owed list
                     else if (message.charAt(0) == '6') {
                         String query = message.substring(1);
-                        System.out.println(query);
+
                         ResultSet rs = statement.executeQuery(query);
                         ArrayList<String> results = new ArrayList<String>();
                         while(rs.next()){
                             results.add("Request Num: " +  rs.getInt(1) +" | "+ rs.getString(4) + " owes you " + rs.getInt(6));
                         }
-                        System.out.println("checkpoint");
+                        logs.println("Viewed the owed list with the following query: " + query);
                         objectOut.writeObject(results);
                     }
 
                     //owing list
                     else if (message.charAt(0) == '7') {
                         String query = message.substring(1);
-                        System.out.println(query);
+
                         ResultSet rs = statement.executeQuery(query);
                         ArrayList<String> results = new ArrayList<String>();
 
                         while(rs.next()){
                             results.add("Request Num: " +  rs.getInt(1) +" | you owe "+ rs.getString(5) + " " + rs.getInt(6));
                         }
-                        System.out.println("checkpoint");
+                        logs.println("viewed the owing list with the following query: " + query);
                         objectOut.writeObject(results);
                     }
                     logs.flush();
