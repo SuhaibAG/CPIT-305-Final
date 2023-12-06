@@ -42,8 +42,10 @@ public class Client {
 
                     System.out.println(response);
                     if (response.startsWith("logged in")) {
-                        int idLocation = message.length() ;
-                        user = new User(2, username);
+
+                        int id = Integer.parseInt(response.substring(response.length() - 1));
+                        user = new User(id, username);
+                        System.out.println(id);
                         login = true;
 
 

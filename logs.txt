@@ -1,17 +1,5 @@
-logged in as Suhaib
-inserted with the following query: insert into Owe (RequestNumber,ID1,ID2,Name1,Name2,Amount,Accepted) values  (733,2,3,'Suhaib','Rayan',5000,'false');
-logged out from 8
 logged in as Saud
-viewed all requests with the following query: select * from Owe where Name2 ='Saud' AND Accepted = 'false';
-accepted a request with the following query with the following query: update Owe set Accepted = 'true'  where Name2 = 'Saud' And Name1='Suhaib';
-viewed the owing list with the following query: Select * from Owe where Name1= 'Saud' AND Accepted = 'true';
-Viewed the owed list with the following query: Select * from Owe where Name2= 'Saud' AND Accepted= 'true';
+logged out from 8
+logged in as Suhaib
 logged out from 8
 logged in as Rayan
-accepted a request with the following query with the following query: update Owe set Accepted = 'true'  where Name2 = 'Rayan' And Name1='1223';
-viewed all requests with the following query: select * from Owe where Name2 ='Rayan' AND Accepted = 'false';
-deleted with the following query: delete from Owe where RequestNumber=733;
-logged out from 8
-logged in as Suhaib
-viewed the owing list with the following query: Select * from Owe where Name1= 'Suhaib' AND Accepted = 'true';
-accepted a request with the following query with the following query: delete from Owe where RequestNumber=658;
