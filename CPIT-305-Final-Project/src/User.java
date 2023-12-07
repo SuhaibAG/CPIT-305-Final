@@ -13,22 +13,6 @@ public class User {
 
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String makeRequest(String user2, int id2,int amount){
         Random rand = new Random();
         int requestNum = (int) (Math.random() * 1000);

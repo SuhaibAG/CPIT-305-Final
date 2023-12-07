@@ -132,7 +132,7 @@ public class Client {
 
 
 
-                    //give money
+                    //settle debt
                     else if (command == 5) {
                         System.out.println("enter the request number you want to settle");
                         int requestNumber = userInput.nextInt();
