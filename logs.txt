@@ -1,2 +1,10 @@
 logged in as Saud
-
+inviewed all requests with the following query: select * from Owe where Name2 ='Suhaib' AND Accepted = 'false';
+accepted a request with the following qViewed the owed list with the following query: Select * from Owe where Name2= 'Saud' AND Accepted= 'true';viewed the owing list with the following query: Select * from Owe where Name1= 'Suhaib' AND Accepted = 'true';
+Vlogged out from 8
+logged in as Rayan
+viewed all requests with the following query: select * from Owe where Name2 ='Rayan' AND Accepted = 'false';
+deleted with the following query: delete from Owe where RequestNumber=724;
+inserted with the following query: iaccepted a request with the following query with the following query: update Owe set Accepted = 'true'  where Name2 =accepted a request with the following query with the following query: delete from Owe where RequestNumber=2;
+viewed the owing list with the following query: Select * from Owe where Name1= 'Rayan' AND Accepted = 'true';
+accepted a request with the following query with the following query: delete from Owe where RequestNumber=203;
